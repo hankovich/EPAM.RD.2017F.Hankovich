@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
-using Service.Generator;
 using Service.Exceptions;
+using Service.Generator;
 
 namespace Service.Tests
 {
@@ -60,7 +57,7 @@ namespace Service.Tests
                 FirstName = "Michael",
                 LastName = "Jackson"
             };
-            Assert.Throws(typeof(DuplicateUserException), () => service.Add(user, user));
+            Assert.Throws(typeof(DuplicateUserException), () => service.Add(new List<User> { user, user }));
         }
 
         [Test]
@@ -82,7 +79,7 @@ namespace Service.Tests
                 LastName = "Lennon"
             };
             service.Add(user);
-            Assert.Throws(typeof(DuplicateUserException), () => service.Add(user, anotherUser));
+            Assert.Throws(typeof(DuplicateUserException), () => service.Add(new List<User> { user, anotherUser }));
         }
 
         [Test]
@@ -103,7 +100,7 @@ namespace Service.Tests
                 LastName = "Lennon"
             };
             service.Add(user);
-            Assert.Throws(typeof(DuplicateUserException), () => service.Add(user, anotherUser));
+            Assert.Throws(typeof(DuplicateUserException), () => service.Add(new List<User> { user, anotherUser }));
         }
     }
 }
